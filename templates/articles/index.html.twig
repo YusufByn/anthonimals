@@ -9,6 +9,8 @@
         <thead>
             <tr>
                 <th>Auteur/e</th>
+                <th>Nom de l'animal</th>
+                <th>Race de l'animal</th>
                 <th>Description</th>
                 <th>Image</th>
                 <th>Crée le</th>
@@ -19,8 +21,16 @@
         {% for article in articles %}
             <tr>
                 <td>{{ article.author }}</td>
+                <td>{{ article.animals.name }}</td>
+                <td>{{ article.breed.name }}</td>
                 <td>{{ article.description }}</td>
-                <td>{{ article.img }}</td>
+                <td>
+                    {% if article.img %}
+                        <img src="{{ asset('upload/articles/' ~ article.img) }}" alt="Image de {{ article.animals.name }}" style="max-width: 100px; max-height: 100px;">
+                     {% else %}
+                        Aucune image
+                    {% endif %}
+                </td>
                 <td>{{ article.createdAt ? article.createdAt|date('Y-m-d') : '' }}</td>
                 <td>
                     <a href="{{ path('app_articles_show', {'id': article.id}) }}">Voir</a>
