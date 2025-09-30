@@ -16,16 +16,22 @@ class ArticlesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('author')
-            ->add('description')
+            ->add('author', null, [
+                'label' => 'Auteur/e',
+            ])
+            ->add('description', null, [
+                'label' => 'Description',
+            ])
             ->add('animals', EntityType::class, [
                 'class' => animals::class,
                 'choice_label' => 'name',
+                'label' => 'Animal',
             ])
             ->add('breed', EntityType::class, [
                 'class' => Breed::class,
                 'choice_label' => 'name',
                 'required' => false,
+                'label' => 'Race',
             ])
             ->add('img', FileType::class, [
                 'label' => 'Image',

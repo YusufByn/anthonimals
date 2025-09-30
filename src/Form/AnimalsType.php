@@ -15,10 +15,13 @@ class AnimalsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
+            ->add('name', null, [
+                'label'=>'Nom',
+            ])
             ->add('breed', EntityType::class, [
                 'class' => breed::class,
                 'choice_label' => 'name',
+                'label' => 'Race',
             ])
         ;
     }
