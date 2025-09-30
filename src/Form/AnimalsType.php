@@ -16,7 +16,6 @@ class AnimalsType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('img')
             ->add('breed', EntityType::class, [
                 'class' => breed::class,
                 'choice_label' => 'name',
