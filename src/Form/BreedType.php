@@ -12,7 +12,9 @@ class BreedType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
+            ->add('name', null, [
+                'label' => 'Nom',
+            ])
         ;
     }
 
