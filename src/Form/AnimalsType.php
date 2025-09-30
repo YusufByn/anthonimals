@@ -17,14 +17,6 @@ class AnimalsType extends AbstractType
         $builder
             ->add('name')
             ->add('img')
-            ->add('created_at', DateType::class, [
-                'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd'
-            ])
-
-            ->add('updated_at', DateType::class, [
-                'widget' => 'single_text',
-            ])
             ->add('breed', EntityType::class, [
                 'class' => breed::class,
                 'choice_label' => 'name',

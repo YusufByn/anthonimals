@@ -25,12 +25,22 @@ class Articles
 
     #[ORM\Column]
     private ?\DateTimeImmutable $updated_at = null;
-
+    
     #[ORM\ManyToOne(inversedBy: 'articles')]
     private ?Animals $animals = null;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
     private ?Breed $breed = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $img = null;
+
+    // dans le construct je mets created_at et updated_at en datetimeimmutable comme ca ca se fait tout seul dans la db
+    public function __construct()
+    {
+        $this->created_at = new \DateTimeImmutable();
+        $this->updated_at = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -105,6 +115,18 @@ class Articles
     public function setBreed(?Breed $breed): static
     {
         $this->breed = $breed;
+
+        return $this;
+    }
+
+    public function getImg(): ?string
+    {
+        return $this->img;
+    }
+
+    public function setImg(?string $img): static
+    {
+        $this->img = $img;
 
         return $this;
     }

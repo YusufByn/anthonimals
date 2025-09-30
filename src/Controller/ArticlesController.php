@@ -30,6 +30,21 @@ final class ArticlesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $file = ($form->get('img')->getData());
+
+            if ($file) {
+                // tu créer newfilename pour changer le nom de l'image 
+                // time va convertir en integer l'heure ou le moment ou l'image a été uploadé
+                // getClientOriginalName va prendre le nom de l'image depuis le pc ou autre device ou ca 
+                $newFileName = time() . '-' . $file->getClientOriginalName();
+
+                $file->move($this->getParameter('article_dir'), $newFileName);
+
+                $article->setImg($newFileName);
+
+            }
+
             $entityManager->persist($article);
             $entityManager->flush();
 
