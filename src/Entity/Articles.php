@@ -29,6 +29,9 @@ class Articles
     #[ORM\ManyToOne(inversedBy: 'articles')]
     private ?Animals $animals = null;
 
+    #[ORM\ManyToOne(inversedBy: 'articles')]
+    private ?Breed $breed = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class Articles
     public function setAnimals(?Animals $animals): static
     {
         $this->animals = $animals;
+
+        return $this;
+    }
+
+    public function getBreed(): ?Breed
+    {
+        return $this->breed;
+    }
+
+    public function setBreed(?Breed $breed): static
+    {
+        $this->breed = $breed;
 
         return $this;
     }

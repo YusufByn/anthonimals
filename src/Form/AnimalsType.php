@@ -6,6 +6,7 @@ use App\Entity\Animals;
 use App\Entity\breed;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,16 +17,17 @@ class AnimalsType extends AbstractType
         $builder
             ->add('name')
             ->add('img')
-            ->add('created_at', null, [
+            ->add('created_at', DateType::class, [
                 'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd'
             ])
 
-            ->add('updated_at', null, [
+            ->add('updated_at', DateType::class, [
                 'widget' => 'single_text',
             ])
             ->add('breed', EntityType::class, [
                 'class' => breed::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
             ])
         ;
     }
