@@ -66,12 +66,23 @@ final class ArticlesController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_articles_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Articles $article, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Articles $article, EntityManagerInterface $entityManager, ArticlesRepository $articlesRepository, $id): Response
     {
         $form = $this->createForm(ArticlesType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = ($form->get('img')->getData());
+            $oldImage = $article->getImg();
+            
+
+            if ($file) {
+                $newFileName = time() . '-' . $file->getClientOriginalName();
+                $file->move($this->getParameter('article_dir'), $newFileName);
+                unlink($this->getParameter('article_dir') . '/' . $oldImage);
+                $article->setImg($newFileName);
+            }
+
             $entityManager->flush();
 
             return $this->redirectToRoute('app_articles_index', [], Response::HTTP_SEE_OTHER);
@@ -87,6 +98,8 @@ final class ArticlesController extends AbstractController
     public function delete(Request $request, Articles $article, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->getPayload()->getString('_token'))) {
+            $image = $article->getImg();
+            unlink($this->getParameter('article_dir') . '/' . $image);
             $entityManager->remove($article);
             $entityManager->flush();
         }

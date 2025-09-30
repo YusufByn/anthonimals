@@ -3,9 +3,11 @@
 {% block title %}Page d'accueil des articles{% endblock %}
 
 {% block body %}
-    <h1>Page d'accueil des articles</h1>
+    <div class="main-content">
+        <h1>Page d'accueil des articles</h1>
 
-    <table class="table">
+        <div class="table-container">
+            <table class="table">
         <thead>
             <tr>
                 <th>Auteur/e</th>
@@ -33,8 +35,8 @@
                 </td>
                 <td>{{ article.createdAt ? article.createdAt|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_articles_show', {'id': article.id}) }}">Voir</a>
-                    <a href="{{ path('app_articles_edit', {'id': article.id}) }}">Modifier</a>
+                    <a href="{{ path('app_articles_show', {'id': article.id}) }}" class="btn btn-secondary">Voir</a>
+                    <a href="{{ path('app_articles_edit', {'id': article.id}) }}" class="btn">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -42,8 +44,12 @@
                 <td colspan="6">aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
+            </tbody>
+            </table>
+        </div>
 
-    <a href="{{ path('app_articles_new') }}">Créer un nouvel article</a>
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="{{ path('app_articles_new') }}" class="btn">Créer un nouvel article</a>
+        </div>
+    </div>
 {% endblock %}
