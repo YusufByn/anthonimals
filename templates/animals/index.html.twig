@@ -3,15 +3,15 @@
 {% block title %}Animals index{% endblock %}
 
 {% block body %}
-    <h1>Animals index</h1>
+    <h1>Page d'accueil des animaux</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Breed</th>
-                <th>Created_at</th>
+                <th>Numéro</th>
+                <th>Nom</th>
+                <th>Race</th>
+                <th>Crée le</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -23,17 +23,17 @@
                 <td>{{ animal.breed.name }}</td>
                 <td>{{ animal.createdAt ? animal.createdAt|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_animals_show', {'id': animal.id}) }}">show</a>
-                    <a href="{{ path('app_animals_edit', {'id': animal.id}) }}">edit</a>
+                    <a href="{{ path('app_animals_show', {'id': animal.id}) }}">Voir</a>
+                    <a href="{{ path('app_animals_edit', {'id': animal.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_animals_new') }}">Create new</a>
+    <a href="{{ path('app_animals_new') }}">Créer un nouveau</a>
 {% endblock %}
