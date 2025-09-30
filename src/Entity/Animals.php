@@ -28,7 +28,7 @@ class Animals
     private ?\DateTimeImmutable $updated_at = null;
 
     #[ORM\ManyToOne(inversedBy: 'animals')]
-    private ?breed $breed = null;
+    private ?Breed $breed = null;
 
     /**
      * @var Collection<int, Articles>
@@ -94,12 +94,12 @@ class Animals
         return $this;
     }
 
-    public function getBreed(): ?breed
+    public function getBreed(): ?Breed
     {
         return $this->breed;
     }
 
-    public function setBreed(?breed $breed): static
+    public function setBreed(?Breed $breed): static
     {
         $this->breed = $breed;
 

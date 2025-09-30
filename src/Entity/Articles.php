@@ -27,7 +27,7 @@ class Articles
     private ?\DateTimeImmutable $updated_at = null;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
-    private ?animals $animals = null;
+    private ?Animals $animals = null;
 
     public function getId(): ?int
     {
@@ -82,12 +82,12 @@ class Articles
         return $this;
     }
 
-    public function getAnimals(): ?animals
+    public function getAnimals(): ?Animals
     {
         return $this->animals;
     }
 
-    public function setAnimals(?animals $animals): static
+    public function setAnimals(?Animals $animals): static
     {
         $this->animals = $animals;
 
