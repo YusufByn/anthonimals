@@ -14,7 +14,13 @@
             <tr>
             <tr>
                 <th>Image : </th>
-                <td>{{ article.img }}</td>
+                <td>
+                    {% if article.img %}
+                        <img src="{{ asset('upload/articles/' ~ article.img) }}" alt="Image de {{ article.animals.name }}" style="max-width: 100px; max-height: 100px;">
+                     {% else %}
+                        Aucune image
+                    {% endif %}
+                </td>
             </tr>
                 <th>Description : </th>
                 <td>{{ article.description }}</td>
